@@ -1,0 +1,32 @@
+<form method="POST">
+    <h3>Set Downtime</h3>
+    <label for="downtime_reason">Downtime Reason:</label>
+    <input type="text" id="downtime_reason" name="downtime_reason" required><br><br>
+    
+    <label for="downtime_by">Set By:</label>
+    <input type="text" id="downtime_by" name="downtime_by" required><br><br>
+
+    <label for="downtime_minutes">Downtime Duration (minutes):</label>
+    <input type="number" id="downtime_minutes" name="downtime_minutes" required><br><br>
+
+    <button type="submit">Set Downtime</button>
+</form>
+
+<hr>
+
+<form method="POST">
+    <h3>End Downtime Early</h3>
+    <button type="submit" name="end_downtime">End Downtime Early</button>
+</form>
+
+<hr>
+
+<h3>Current Downtime Status:</h3>
+{% if state.downtime %}
+    <p>Downtime Active</p>
+    <p>Reason: {{ state.downtime_reason }}</p>
+    <p>Set By: {{ state.downtime_by }}</p>
+    <p>Ends at: {{ state.downtime_end | datetimeformat }}</p>
+{% else %}
+    <p>No active downtime.</p>
+{% endif %}
