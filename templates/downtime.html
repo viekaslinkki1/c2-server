@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downtime</title>
+</head>
+<body>
+    <h1>System is down for maintenance</h1>
+    <p>{{ message }}</p>
+    <p>Downtime will end at: {{ downtime_end | timestamp_to_datetime }}</p>
+
+    <script type="text/javascript">
+        const eventSource = new EventSource('/events');
+
+        eventSource.onmessage = function(event) {
+            if (event.data === 'reload') {
+                location.reload();  // Refresh the page when downtime ends
+            }
+            else if (event.data === 'no_downtime') {
+                // Optional: Perform any other actions if no downtime
+            }
+        }
+    </script>
+</body>
+</html>

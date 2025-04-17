@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous C2 Settings</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{{ url_for('static', filename='backround.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .settings-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 400px;
+            margin: auto;
+            margin-top: 100px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <h2>Settings</h2>
+        <form method="POST">
+            <label>Enable Downtime:</label>
+            <input type="checkbox" name="downtime" {% if state['downtime'] %}checked{% endif %}><br>
+            
+            <label>License Keys Disabled:</label>
+            <input type="checkbox" name="license_disabled" {% if state['license_disabled'] %}checked{% endif %}><br>
+
+            <label>Downtime End Time (if enabled):</label>
+            <input type="datetime-local" name="downtime_end" value="{{ state['downtime_end'] }}"><br>
+
+            <input type="submit" value="Save Settings">
+        </form>
+    </div>
+</body>
+</html>

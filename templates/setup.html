@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous C2 Setup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{{ url_for('static', filename='backround.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .setup-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent background for setup box */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="setup-container">
+        <h2>Anonymous C2 Setup</h2>
+        <form method="post">
+            <input type="text" name="license_key" placeholder="Enter License Key" required><br>
+            <input type="submit" value="Set Up">
+        </form>
+        <p><a href="/" style="color: #4CAF50;">Already have an account? Log in</a></p>
+    </div>
+</body>
+</html>

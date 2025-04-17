@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Stresser</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{{ url_for('static', filename='background.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .menu-icon {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .menu-icon div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+        }
+        .menu a:hover {
+            background-color: #555;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            margin-top: 100px;
+        }
+        .input-group {
+            margin: 10px auto;
+            width: 300px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu" id="menu">
+            <!-- Updated link here -->
+            <a href="/dashboard">Home</a>
+            <a href="/wifi-stresser">Wi-Fi Stresser</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Wi-Fi Stress Tester</h2>
+        <form>
+            <div class="input-group">
+                <label>Target IP/Host:</label>
+                <input type="text" name="target" placeholder="192.168.1.1">
+            </div>
+            <div class="input-group">
+                <label>Duration (seconds):</label>
+                <input type="number" name="duration" placeholder="60">
+            </div>
+            <div class="input-group">
+                <label>Method:</label>
+                <select name="method">
+                    <option value="ping">Ping Flood</option>
+                    <option value="udp">UDP Flood</option>
+                    <option value="syn">SYN Flood</option>
+                </select>
+            </div>
+            <button type="submit">Start Attack</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
